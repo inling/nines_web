@@ -1,0 +1,44 @@
+/*输入框字体*/
+input{
+    font-size: 12px !important;
+}
+
+/*输入框error样式*/
+.ant-form-item{
+    &.ant-form-item-has-error{
+        .ant-input{
+            border-color: #f66495;
+            &:hover{
+                border-color: #f66495 !important;
+            }
+            &:focus{
+                border-color: #f66495;
+                -webkit-box-shadow: 0 0 0 2px rgba(247, 185, 245, 0.7);
+                box-shadow: 0 0 0 2px rgba(247, 185, 245, 0.7)
+            }
+        }
+        .ant-form-item-explain{
+            color: #f66495;
+            font-size: 12px !important;
+        }
+        .ant-select .ant-select-selector{
+            border-color: #f66495  !important
+        }
+    }
+    &.ant-form-item-has-error-leave{
+        &.f66Explain{
+            .ant-form-item-explain{
+                color: #f66495;
+                font-size: 12px !important;
+            }
+        }
+    }
+    &.ant-form-item-has-success{
+        .ant-form-item-explain{
+            color: #f66495;
+            font-size: 12px !important;
+        }
+    }
+}
+
+/**v1.0.0 */

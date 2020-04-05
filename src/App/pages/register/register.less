@@ -1,0 +1,114 @@
+@import '../../../assets/style/_reset.less';
+@import '../../../assets//style//_tools.less';
+.register{
+    padding: 25px;
+    margin-top: 1px;
+    background: #fff;
+    /*登陆注册大标题*/
+    .title-line {
+        height: 28px;
+        margin: 0 auto;
+        /*border-bottom: 1px solid #ddd;*/
+        margin-bottom: 28px;
+        text-align: center;
+        .tit {
+            height: 56px;
+            line-height: 56px;
+            margin: 0 auto;
+            padding: 0 20px;
+            font-size: 38px;
+            background: #fff;
+            text-align: center;
+        }
+    }   
+    /*注册框大小适配*/
+    .register-info{
+        width: 100%;
+        input{
+            height: 40px;
+        }
+        @media (min-width: 768px){
+            width: 400px;
+        }
+        margin: 60px auto 0;
+        list-style: none;
+        padding: 0;
+        .err-message{
+            height: 20px;
+            margin: 6px 0;
+            .tips{
+                font-size: 12px;
+                color:#f66495;
+                text-align: left;
+            } 
+        }
+        .register-agree{
+            font-size: 12px;
+            display: block;
+            padding: 10px 0;
+            cursor: pointer;
+            text-align: left;
+            .agree{
+                font-size: 12px;
+            }
+        }
+        .register_direct_login{
+            height: 40px;
+            line-height: 40px;
+            font-size: 12px;
+            a{
+                float: right;
+            }
+        }
+        .sec-level{
+            display: inline-block;
+            position: absolute;
+            top:-20px;
+            right: -120px;
+            width: 120px;
+            div{
+                height: 20px;
+                padding-left: 10px;
+                font-weight: 700;
+            }
+            span{
+                display: inline-block;
+                width: 30px;
+                height:5px;
+                margin-left:10px;
+                display: none;
+                &:nth-child(2){
+                    background: red;
+                }
+                &:nth-child(3){
+                    background: #ff7f00;
+                }
+                &:last-child{
+                    background: #49c519;
+                }
+            }
+            .dn{
+                display: inline-block;
+            }
+        }
+        .registerPwd{
+            &.ant-form-item-has-success{
+                .ant-input{
+                    border-color: #52c41a;
+                    &:hover{
+                        border-color: #52c41a !important;
+                    }
+                    &:focus{
+                        border-color: #52c41a;
+                        -webkit-box-shadow: 0 0 0 2px rgba(82, 196, 26, 0.2);
+                        box-shadow: 0 0 0 2px rgba(82, 196, 26, 0.2)
+                    }
+                }
+                .ant-form-item-explain{
+                    color: #52c41a;
+                    font-size: 12px !important;
+                }
+            }
+        }
+    }
+}
