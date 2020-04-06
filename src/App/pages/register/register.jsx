@@ -237,7 +237,7 @@ class Register extends React.Component {
         return (
             <Spin spinning={this.state.loading} size="large">
                 <Layout>
-                    <NHeader />
+                    <NHeader  history={this.props.history}/>
                     <Content className="register">
                         <div>
                             <div className="title-line">

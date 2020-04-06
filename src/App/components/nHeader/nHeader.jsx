@@ -42,12 +42,15 @@ class nHeader extends React.Component {
             }
         })
     }
-    loginOut=()=>{
+    loginOut = () => {
         localStorage.removeItem('token')
         this.setState({
             isLogin: false,
             userInfo: {}
         })
+    }
+    toPCTR = () => {
+        this.props.history.push('/PCTR');
     }
     render() {
         const responsive = {
@@ -68,7 +71,7 @@ class nHeader extends React.Component {
                         <Left />
                     </Col>
                     <Col {...responsive.responsiveRight}>
-                        <Right isLogin={this.state.isLogin} loginOut={this.loginOut} userInfo={this.state.userInfo}/>
+                        <Right isLogin={this.state.isLogin} loginOut={this.loginOut} toPCTR={this.toPCTR} userInfo={this.state.userInfo}/>
                     </Col>
                     <Col {...responsive.responsiveRList} style={{ 'textAlign': 'center' }}>
                         <Popover placement="bottomRight" content={content} title="Title" trigger="click" arrowPointAtCenter>

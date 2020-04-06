@@ -6,7 +6,9 @@ import {
     HomeOutlined,
     EditOutlined,
     TagOutlined,
-    UserOutlined
+    UserOutlined,
+    PoweroffOutlined,
+    SmileOutlined
 } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 const publc_url = process.env.PUBLIC_URL;
@@ -21,10 +23,17 @@ class right extends React.Component {
             responsiveRight: { xs: 0, sm: 0, md: 20, lg: 14, xl: 14, xxl: 14 },
             responsiveRR: { xs: 24, sm: 24, md: 2, lg: 2, xl: 2, xxl: 2 }
         }
-        const { loginOut } = this.props;
+        const {toPCTR,loginOut} =this.props;
         const menu = (
             <Menu>
+                <Menu.Item onClick={toPCTR}>
+                    <SmileOutlined  />
+                    <span>
+                        个人中心
+                    </span>
+                </Menu.Item>
                 <Menu.Item onClick={loginOut}>
+                    <PoweroffOutlined />
                     <span>
                         注销
                     </span>
@@ -66,7 +75,7 @@ class right extends React.Component {
                 </Col>
                 <Col {...responsive.responsiveRR} style={{ 'textAlign': 'center' }}>
                     {this.props.isLogin ? (
-                        <Dropdown overlay={menu} placement="bottomRight">
+                        <Dropdown overlay={menu} overlayStyle={{minWidth:'150px'}} placement="bottomRight">
                             <Avatar src={publc_url + '/20170729141852_HFzVE.jpeg'} alt="logo"></Avatar>
                         </Dropdown>
                     ) : (

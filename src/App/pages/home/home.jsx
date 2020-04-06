@@ -8,7 +8,7 @@ class home extends React.Component {
     render() {
         return (
             <Layout>
-                <NHeader />
+                <NHeader  history={this.props.history}/>
                 <NContent />
             </Layout>
         )
