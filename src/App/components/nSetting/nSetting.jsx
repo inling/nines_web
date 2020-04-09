@@ -3,6 +3,7 @@ import './nSetting.less';
 import { Row, Col } from 'antd';
 import SettingMenu from './settingMenu/settingMenu';
 import SettingContent from './settingContent/settingContent';
+import SettingName from './settingName/settingName';
 class nSetting extends React.Component {
     render() {
         return (
@@ -12,7 +13,8 @@ class nSetting extends React.Component {
                         <SettingMenu />
                     </Col>
                     <Col span={19}>
-                        <SettingContent />
+                        {false?<SettingContent />:<SettingName/>}
+                        
                     </Col>
                 </Row>
             </div>
