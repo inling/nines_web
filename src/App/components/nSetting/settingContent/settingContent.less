@@ -5,31 +5,80 @@
     box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 
     0 3px 6px 0 rgba(0, 0, 0, 0.12), 
     0 4px 12px 4px rgba(0, 0, 0, 0.09);
-    .accountInfo,.userInfoList{
-        p{
+    .user_edit{
+        color:#1890ff;
+        font-size:16px;
+        margin-left:10px;
+    }
+    .user_info_p{
+        padding: 0 0 10px;
+        .uesr_n{
+            font-size: 20px;
+            font-weight: bold;
+            max-width: 435px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-wrap: normal;
+            word-break: normal;
+        }
+        .c-lv {
+            background: #AFD3F5;
+            position: relative;
+            top: -3px;
+            padding: 1px 4px;
+            margin: 0 0 0 10px;
+            color: #fff;
+            font-size: 8px;
+            border-radius: 2px;
+        }
+        .user_msg{
+            font-size: 14px;
+            margin: 5px 0 10px 0;
+            color: #777777;
+            .blog_num{
+                color: #333;
+            }
+        }
+    }
+    .user_art{
+        .user_art_icon{
+            font-size: 18px;
+            color: #ff9900;
+            vertical-align: text-bottom;
+        }
+        .user_art_icon_msg{
+            margin-left: 5px;
+            font-weight: bold;
+        }
+    }
+    .accountInfo,.userInfoList{    
             font-size: 14px;
             color: #999;
-            padding: 4px 0 4px 32px;
-            margin: 0 0;
+            
             span{
                 color: #333;
             }
-            .p1{
-                padding: 0;
-                font-size: 14px;
-                color: #333;
-                font-weight: bolder;
-            }
-            .p2{
-                padding: 0;
-                font-size: 12px;
-                color: #999;
-                span{
-                    color: #ff9900;
-                    font-weight: bold;
+            .msg{
+                .msg_1{
+                    padding: 0;
+                    margin: 0;
+                    font-size: 14px;
+                    color: #333;
+                    
+                    font-weight: bolder;
+                }
+                .msg_2{
+                    padding: 0;
+                    margin: 5px 0 0;
+                    font-size: 12px;
+                    color: #999;
+                    span{
+                        color: #ff9900;
+                        font-weight: bold;
+                    }
                 }
             }
-        }
     }
     .title{
         line-height: 49px;
