@@ -4,6 +4,7 @@ import { Row, Col } from 'antd';
 import SettingMenu from './settingMenu/settingMenu';
 import SettingContent from './settingContent/settingContent';
 import SettingName from './settingName/settingName';
+import SettingEdit from './settingEdit/settingEdit';
 class nSetting extends React.Component {
     render() {
         return (
@@ -13,7 +14,7 @@ class nSetting extends React.Component {
                         <SettingMenu />
                     </Col>
                     <Col span={19}>
-                        {false?<SettingContent />:<SettingName/>}
+                        {true?<SettingEdit />:<SettingName/>}
                         
                     </Col>
                 </Row>

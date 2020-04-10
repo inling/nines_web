@@ -155,4 +155,23 @@ exports.phoneIsExist = (phone, callback) => {
     })
 }
 
+/**
+ * 修改身份信息
+ * @callback callback
+ */
+exports.editUserInfo = (userInfo, callback) => {
+    let token = localStorage.getItem('token')
+    return fetch('http://127.0.0.1:3001/editUserInfo', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(userInfo),
+        mode: 'cors'
+    }).then(response => response.json()).then(res => {
+        return callback(res);
+    })
+}
+
 /**v1.0.0 */

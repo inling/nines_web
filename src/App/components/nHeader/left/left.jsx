@@ -9,7 +9,7 @@ class left extends React.Component {
         return (
             <Link target="_blank" to="/" className="logo">
                 <Avatar src={logo} alt="logo"></Avatar>
-                <span>Nines Section</span>
+                <span>鹿角</span>
             </Link>
         )
     }

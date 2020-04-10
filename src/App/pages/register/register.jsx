@@ -192,7 +192,6 @@ class Register extends React.Component {
                     break;
                 case 4500:
                     this.setState({
-                        loading: false,
                         vCodeError: {
                             validateStatus: 'error',
                             help: '验证码错误'
@@ -205,6 +204,7 @@ class Register extends React.Component {
             return res.code === 0 ? res : false;
         })
         if (!smsRes) {
+            this.setState({ loading: false });
             return;
         }
         let userObj = {
@@ -215,6 +215,7 @@ class Register extends React.Component {
             return res.code === 0 ? res : false;
         })
         if (!registerRes) {
+            this.setState({ loading: false });
             return;
         }
         let passwordEncrypt = Key.encrypt(registerRes.pk, this.state.password);
@@ -226,9 +227,11 @@ class Register extends React.Component {
             return res.code === 0 ? res : false;
         })
         if(!setRes){
+            this.setState({ loading: false });
             return;
         }
         this.setState({ loading: false });
+        this.props.history.push('/');
     }
     onFinishFailed = errorInfo => {
         //console.log('Failed:', errorInfo);

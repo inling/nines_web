@@ -15,10 +15,6 @@ class settingMenu extends React.Component{
                         <HomeOutlined />
                         我的信息
                     </Menu.Item>
-                    <Menu.Item key="2">
-                        <CalendarOutlined />
-                        文章管理
-                    </Menu.Item>
                 </Menu>
             </div>
         )
