@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
     Row, Col, Form, Input, Button, Radio, DatePicker, Select
 } from 'antd';
@@ -6,7 +7,6 @@ import { LeftCircleOutlined } from '@ant-design/icons';
 import './settingEdit.less';
 import API from '../../../../common/api/api';
 const { TextArea } = Input;
-const { Option } = Select;
 const provinceData = ['Zhejiang', 'Jiangsu'];
 const cityData = {
     Zhejiang: ['Hangzhou', 'Ningbo', 'Wenzhou'],
@@ -52,7 +52,9 @@ class settingEdit extends React.Component {
             <div className="settingEdit">
                 <Row>
                     <Col span={1}>
-                        <LeftCircleOutlined style={{ fontSize: '30px', marginTop: '4px' }} />
+                        <Link to="/u">
+                            <LeftCircleOutlined style={{ fontSize: '30px', marginTop: '4px' }} />
+                        </Link>                       
                     </Col>
                     <Col span={23}>
                         <span style={{ fontSize: '24px', marginLeft: '10px' }}>
@@ -62,7 +64,7 @@ class settingEdit extends React.Component {
                 </Row>
                 <Row>
                     <Col>
-                        <Form className="editForm" initialValues={{['gender']:1}} onFinish={this.onFinish} {...layout}>
+                        <Form className="editForm" initialValues={{'gender':1}} onFinish={this.onFinish} {...layout}>
                             <Form.Item label="昵称">
                                 <span style={{color:'#777'}}>鹿角</span>
                             </Form.Item>

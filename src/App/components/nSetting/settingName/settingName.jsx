@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Row, Col, Form, Input, Button } from 'antd';
 import { LeftCircleOutlined } from '@ant-design/icons';
 import './settingName.less';
@@ -16,7 +17,10 @@ class settingName extends React.Component {
             <div className="settingName">
                 <Row>
                     <Col span={1}>
-                        <LeftCircleOutlined style={{ fontSize: '30px', marginTop: '4px' }} />
+                        <Link to="/u">
+                          <LeftCircleOutlined style={{ fontSize: '30px', marginTop: '4px' }} />  
+                        </Link>
+                        
                     </Col>
                     <Col span={23}>
                         <span style={{ fontSize: '24px', marginLeft: '10px' }}>

@@ -17,7 +17,7 @@ class settingContent extends React.Component {
                             <Col span={24} className="user_info_p">
                                 <span className="uesr_n">Nines</span>
                                 <span className="c-lv">LV2</span>
-                                <Link to="/">
+                                <Link to="/u/editNick">
                                     <EditOutlined className="user_edit" />
                                 </Link>
                             </Col>
@@ -25,9 +25,6 @@ class settingContent extends React.Component {
                                 <div className="user_msg">
                                     博客号：
                                     <span className="blog_num">154523</span>
-                                    <Link to="/">
-                                        <EditOutlined className="user_edit" />
-                                    </Link>
                                 </div>
                             </Col>
                             <Col span={24} className="user_art">
@@ -56,7 +53,7 @@ class settingContent extends React.Component {
                                 <Divider orientation="left"></Divider>
                             </Col>
                             <Col span={4} style={{ fontSize: '12px', padding: '0 12px', color: '#999' }}>
-                                <Link to="/">
+                                <Link to="/u/editInfo">
                                     <EditOutlined style={{ color: '#1890ff', fontSize: '16px' }} />
                                     <span style={{ marginLeft: '5px' }}>编辑资料</span>
                                 </Link>

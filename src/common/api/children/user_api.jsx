@@ -174,4 +174,134 @@ exports.editUserInfo = (userInfo, callback) => {
     })
 }
 
+/**
+ * 获取用户文集
+ * @callback callback
+ */
+exports.getAnthology = (callback) => {
+    let token = localStorage.getItem('token')
+    return fetch('http://127.0.0.1:3001/getAnthology', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({}),
+        mode: 'cors'
+    }).then(response => response.json()).then(res => {
+        return callback(res);
+    })
+}
+/**
+ * 添加文集
+ * @callback callback
+ */
+exports.addAnthology = (anthologyName,callback) => {
+    let token = localStorage.getItem('token')
+    return fetch('http://127.0.0.1:3001/addAnthology', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({anthologyName}),
+        mode: 'cors'
+    }).then(response => response.json()).then(res => {
+        return callback(res);
+    })
+}
+/**
+ * 删除文集
+ * @callback callback
+ */
+exports.deleteAnthology = (anthologyId,callback) => {
+    let token = localStorage.getItem('token')
+    return fetch('http://127.0.0.1:3001/deleteAnthology', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({anthologyId}),
+        mode: 'cors'
+    }).then(response => response.json()).then(res => {
+        return callback(res);
+    })
+}
+
+/**
+ * 添加文章
+ * @callback callback
+ */
+exports.addArticle = (artInfo,callback) => {
+    let token = localStorage.getItem('token')
+    return fetch('http://127.0.0.1:3001/addArticle', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(artInfo),
+        mode: 'cors'
+    }).then(response => response.json()).then(res => {
+        return callback(res);
+    })
+}
+
+/**
+ * 获取文章
+ * @callback callback
+ */
+exports.getArticle = (anthologyId,callback) => {
+    let token = localStorage.getItem('token')
+    return fetch('http://127.0.0.1:3001/getArticle', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({anthologyId}),
+        mode: 'cors'
+    }).then(response => response.json()).then(res => {
+        return callback(res);
+    })
+}
+
+/**
+ * 获取文章文本
+ * @callback callback
+ */
+exports.getArticleText = (articleId, callback) => {
+    let token = localStorage.getItem('token')
+    return fetch('http://127.0.0.1:3001/getArticleText', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({ articleId }),
+        mode: 'cors'
+    }).then(response => response.json()).then(res => {
+        return callback(res);
+    })
+}
+
+/**
+ * 设置文章文本
+ * @callback callback
+ */
+exports.setArticleText = (artInfo, callback) => {
+    let token = localStorage.getItem('token')
+    return fetch('http://127.0.0.1:3001/setArticleText', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(artInfo),
+        mode: 'cors'
+    }).then(response => response.json()).then(res => {
+        return callback(res);
+    })
+}
 /**v1.0.0 */

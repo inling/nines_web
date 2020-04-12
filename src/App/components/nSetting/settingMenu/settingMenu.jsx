@@ -2,8 +2,7 @@ import React from 'react';
 import './settingMenu.less';
 import { Menu } from 'antd';
 import {
-    HomeOutlined,
-    CalendarOutlined
+    HomeOutlined
   } from '@ant-design/icons';
 class settingMenu extends React.Component{
     render(){

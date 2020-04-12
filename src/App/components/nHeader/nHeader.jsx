@@ -50,7 +50,7 @@ class nHeader extends React.Component {
         })
     }
     toPCTR = () => {
-        this.props.history.push('/PCTR');
+        this.props.history.push('/u');
     }
     render() {
         const responsive = {

@@ -1,8 +1,7 @@
 import React from 'react';
 import './register.less'
-import { Layout, Form, Input, Button, Select, Checkbox,Spin } from 'antd';
+import { Layout, Form, Input, Button, Select, Checkbox, Spin } from 'antd';
 import { Link } from 'react-router-dom';
-import NHeader from '../../components/nHeader/nHeader';
 
 import API from '../../../common/api/api';
 import Tools from '../../../common/utils/tools';
@@ -15,12 +14,12 @@ class Register extends React.Component {
         super(props)
         this.state = {
             provision: false,
-            nickname:'',
-            password:'',
+            nickname: '',
+            password: '',
             phone: '',
             smsText: '点击获取',
             smsCount: 0,
-            vCode:'2121',
+            vCode: '2121',
             //Error
             nickError: {},
             passwordError: {},
@@ -37,7 +36,7 @@ class Register extends React.Component {
             return;
         }
         this.setState({
-            nickname:cur_val
+            nickname: cur_val
         })
         API.user_api.nickname(cur_val, res => {
             if (res.code === 0) {
@@ -71,7 +70,7 @@ class Register extends React.Component {
                                 : 'validating'
             }
             this.setState({
-                password:cur_val,
+                password: cur_val,
                 passwordError: {
                     validateStatus: errorInfo.validateStatus,
                     help: errorInfo.help
@@ -102,7 +101,7 @@ class Register extends React.Component {
             phone: cur_val,
             phoneError: {}
         })
-    } 
+    }
     smsClick = async () => {
         let phone = this.state.phone;
         let res = Tools.checkPhone(phone);
@@ -110,13 +109,13 @@ class Register extends React.Component {
             return;
         }
         let checkPhoneRes = await API.user_api.phoneIsExist(phone, res => {
-            switch(res.code){
+            switch (res.code) {
                 case 0:
                     this.setState({ phoneError: {} })
                     break;
                 case 4600:
                     this.setState({
-                        phoneError:{
+                        phoneError: {
                             validateStatus: 'error',
                             help: res.message
                         }
@@ -127,7 +126,7 @@ class Register extends React.Component {
             }
             return res.code === 0 ? res : false
         })
-        if(!checkPhoneRes){
+        if (!checkPhoneRes) {
             return;
         }
         await API.user_api.sendSMS(phone, res => {
@@ -153,7 +152,7 @@ class Register extends React.Component {
                 }, 1000)
             }
         });
-    } 
+    }
     checkVCode = e => {
         let cur_val = e.target.value
         let res = Tools.checkVCode(cur_val);
@@ -223,10 +222,10 @@ class Register extends React.Component {
             nickname: this.state.nickname,
             password: passwordEncrypt
         }
-        let setRes  = await API.user_api.setPassword(userInfo, res => {
+        let setRes = await API.user_api.setPassword(userInfo, res => {
             return res.code === 0 ? res : false;
         })
-        if(!setRes){
+        if (!setRes) {
             this.setState({ loading: false });
             return;
         }
@@ -239,100 +238,97 @@ class Register extends React.Component {
     render() {
         return (
             <Spin spinning={this.state.loading} size="large">
-                <Layout>
-                    <NHeader  history={this.props.history}/>
-                    <Content className="register">
-                        <div>
-                            <div className="title-line">
-                                <span className="tit">注册</span>
-                            </div>
+                <Content className="register">
+                    <div>
+                        <div className="title-line">
+                            <span className="tit">注册</span>
                         </div>
-                        <Form name="dynamic_register_rule"
-                            className="register-info"
-                            onFinish={this.onFinish}
-                            onFinishFailed={this.onFinishFailed}>
-                            <Form.Item name="nickname" rules={[{ required: true, message: '请告诉我你的昵称吧' }]} {...this.state.nickError}>
-                                <Input
-                                    size="large"
-                                    placeholder="昵称"
-                                    onChange={this.checkNick}
-                                />
-                            </Form.Item>
-                            <Form.Item name="password" rules={[{ required: true, message: '密码不能小于6个字符' }]} {...this.state.passwordError} className="registerPwd">
-                                <Input.Password
-                                    size="large"
-                                    visibilityToggle={false}
-                                    placeholder="密码（6-16个字符组成，区分大小写）"
-                                    onChange={this.checkPassword}
-                                />
-                            </Form.Item>
-                            <Form.Item {...this.state.phoneError} className="f66Explain">
-                                <Input.Group compact>
-                                    <Select size="large"
-                                        defaultValue="CN"
-                                        disabled
-                                        style={{ width: '30%', fontSize: '14px' }} >
-                                        <Option value="jack">Jack</Option>
-                                    </Select>
-                                    <Form.Item
-                                        name="phone"
-                                        rules={[{ required: true, message: '请输入手机号' }]}
-                                        noStyle>
-                                        <Input
-                                            size="large"
-                                            placeholder="填写常用手机号"
-                                            onChange={this.checkPhone}
-                                            style={{ width: '70%', textAlign: 'left', fontSize: '14px' }} />
-                                    </Form.Item>
-                                </Input.Group>
-                            </Form.Item>
-                            <Form.Item {...this.state.vCodeError} className="f66Explain">
-                                <Input.Group compact>
-                                    <Form.Item
-                                        name="code"
-                                        rules={[{ required: true, message: '请输入验证码' }]}
-                                        noStyle>
-                                        <Input
-                                            size="large"
-                                            placeholder="请输入短信验证码"
-                                            onChange={this.checkVCode}
-                                            style={{ width: '70%' }} />
-                                    </Form.Item>
-                                    <Button
+                    </div>
+                    <Form name="dynamic_register_rule"
+                        className="register-info"
+                        onFinish={this.onFinish}
+                        onFinishFailed={this.onFinishFailed}>
+                        <Form.Item name="nickname" rules={[{ required: true, message: '请告诉我你的昵称吧' }]} {...this.state.nickError}>
+                            <Input
+                                size="large"
+                                placeholder="昵称"
+                                onChange={this.checkNick}
+                            />
+                        </Form.Item>
+                        <Form.Item name="password" rules={[{ required: true, message: '密码不能小于6个字符' }]} {...this.state.passwordError} className="registerPwd">
+                            <Input.Password
+                                size="large"
+                                visibilityToggle={false}
+                                placeholder="密码（6-16个字符组成，区分大小写）"
+                                onChange={this.checkPassword}
+                            />
+                        </Form.Item>
+                        <Form.Item {...this.state.phoneError} className="f66Explain">
+                            <Input.Group compact>
+                                <Select size="large"
+                                    defaultValue="CN"
+                                    disabled
+                                    style={{ width: '30%', fontSize: '14px' }} >
+                                    <Option value="jack">Jack</Option>
+                                </Select>
+                                <Form.Item
+                                    name="phone"
+                                    rules={[{ required: true, message: '请输入手机号' }]}
+                                    noStyle>
+                                    <Input
                                         size="large"
-                                        type="primary"
-                                        disabled={this.state.smsCount !== 0}
-                                        style={{ width: '30%', fontSize: '14px' }}
-                                        className='setCenter'
-                                        onClick={this.smsClick}
-                                    >
-                                        {this.state.smsCount === 0 ? this.state.smsText : <span>{this.state.smsCount}</span>}
-                                    </Button>
-                                </Input.Group>
-                            </Form.Item>
-                            <Form.Item style={{ marginBottom: 0 }}>
-                                <Checkbox checked={this.state.provision} onChange={this.checkProvision}>我已同意</Checkbox>
-                                <Link target="_blank" to="/">《NINE博客使用协议》</Link>
-                                和
-                            <Link target="_blank" to="/" style={{ marginRight: '10px' }}>《NINE隐私政策》</Link>
-                            </Form.Item>
-                            <div>
+                                        placeholder="填写常用手机号"
+                                        onChange={this.checkPhone}
+                                        style={{ width: '70%', textAlign: 'left', fontSize: '14px' }} />
+                                </Form.Item>
+                            </Input.Group>
+                        </Form.Item>
+                        <Form.Item {...this.state.vCodeError} className="f66Explain">
+                            <Input.Group compact>
+                                <Form.Item
+                                    name="code"
+                                    rules={[{ required: true, message: '请输入验证码' }]}
+                                    noStyle>
+                                    <Input
+                                        size="large"
+                                        placeholder="请输入短信验证码"
+                                        onChange={this.checkVCode}
+                                        style={{ width: '70%' }} />
+                                </Form.Item>
                                 <Button
-                                    block
                                     size="large"
                                     type="primary"
-                                    htmlType="submit"
-                                    disabled={!this.state.provision}
+                                    disabled={this.state.smsCount !== 0}
+                                    style={{ width: '30%', fontSize: '14px' }}
+                                    className='setCenter'
+                                    onClick={this.smsClick}
                                 >
-                                    注册
+                                    {this.state.smsCount === 0 ? this.state.smsText : <span>{this.state.smsCount}</span>}
+                                </Button>
+                            </Input.Group>
+                        </Form.Item>
+                        <Form.Item style={{ marginBottom: 0 }}>
+                            <Checkbox checked={this.state.provision} onChange={this.checkProvision}>我已同意</Checkbox>
+                            <Link target="_blank" to="/">《NINE博客使用协议》</Link>
+                                和
+                            <Link target="_blank" to="/" style={{ marginRight: '10px' }}>《NINE隐私政策》</Link>
+                        </Form.Item>
+                        <div>
+                            <Button
+                                block
+                                size="large"
+                                type="primary"
+                                htmlType="submit"
+                                disabled={!this.state.provision}
+                            >
+                                注册
                             </Button>
-                            </div>
-                            <div className="register_direct_login">
-                                <Link to="/login">已有账号，直接登录&gt;</Link>
-                            </div>
-                        </Form>
-                    </Content>
-                </Layout>
+                        </div>
+                        <div className="register_direct_login">
+                            <Link to="/login">已有账号，直接登录&gt;</Link>
+                        </div>
+                    </Form>
+                </Content>
             </Spin>
         )
     }
