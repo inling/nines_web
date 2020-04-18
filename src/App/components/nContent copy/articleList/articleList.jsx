@@ -1,6 +1,6 @@
 import React from 'react';
 import './articleList.less';
-import { Row, Col, List, Avatar } from 'antd';
+import { Row, Col, List } from 'antd';
 import { StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
 class articleList extends React.Component {
     state = {
@@ -61,18 +61,17 @@ class articleList extends React.Component {
                                             ]}
                                             extra={
                                                 <img
-                                                    width={272}
+                                                    width={150}
                                                     alt="logo"
                                                     src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
                                                 />
                                             }
                                         >
                                             <List.Item.Meta
-                                                avatar={<Avatar src={item.avatar} />}
-                                                title={<a href={item.href}>{item.title}</a>}
+                                                title={<a href={item.href} style={{fontWeight: '700',fontSize: '18px',color:'#333'}}>{item.title}</a>}
                                                 description={item.description}
                                             />
-                                            {item.content}
+                                            
                                         </List.Item>
                                     )}
                                 />,

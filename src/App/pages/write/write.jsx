@@ -1,6 +1,6 @@
 import React from 'react';
 import './write.less';
-import { Row, Col, Tabs, Button, Popover, Input, Form, Empty, Table, Menu, Dropdown,Progress  } from 'antd';
+import { Row, Col, Tabs, Button, Popover, Input, Form, Empty, Table, Menu, Dropdown  } from 'antd';
 import {
     PlusOutlined,
     SettingOutlined,
@@ -30,23 +30,23 @@ class write extends React.Component {
             columns: [
                 {
                     title: '标题',
-                    dataIndex: 'articleName',
                     key: 'articleName',
+                    dataIndex:'articleName',
                     ellipsis: true,
                 },
                 {
                     title: 'Action',
                     key: 'Action',
+                    dataIndex:'id',
                     width: 45,
-                    render: (data) => {
+                    render: (text,record) => {
                         return <Dropdown
-
                             placement="bottomRight"
                             overlay={
                                 (<Menu>
                                     <Menu.Item>
                                         <DeleteOutlined />
-                                        <span>删除</span>
+                                        <span  onClick={()=>this.deleteArt(text,record)}>删除</span>
                                     </Menu.Item>
                                     <Menu.Item>
                                         <CloudUploadOutlined />
@@ -194,6 +194,14 @@ class write extends React.Component {
         })
         this.setState({ selectedRowKeys });
     }
+    deleteArt = (text,record) => {
+        API.user_api.deleteArticle(text,res=>{
+            console.log(res)
+            if(res.code===0){
+                this.getArt(this.state.activeKey)
+            }
+        })
+    }
     render() {
         const text = <span>输入名称</span>;
         const content = (
@@ -229,7 +237,7 @@ class write extends React.Component {
 
         return (
             <div className="write">
-                <Row style={{ height: '99%' }}>
+                <Row style={{ height: '99%' ,minHeight: '800px'}}>
                     <Col span={6} style={{ height: '100%', position: 'relative', padding: '0 5px' }}>
                         <Tabs
                             onChange={this.onChange}

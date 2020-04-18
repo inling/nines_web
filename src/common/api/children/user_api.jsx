@@ -304,4 +304,22 @@ exports.setArticleText = (artInfo, callback) => {
         return callback(res);
     })
 }
+/**
+ * 删除文章文本
+ * @callback callback
+ */
+exports.deleteArticle = (articleId, callback) => {
+    let token = localStorage.getItem('token')
+    return fetch('http://127.0.0.1:3001/deleteArticle', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({ articleId }),
+        mode: 'cors'
+    }).then(response => response.json()).then(res => {
+        return callback(res);
+    })
+}
 /**v1.0.0 */

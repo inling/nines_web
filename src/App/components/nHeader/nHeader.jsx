@@ -1,85 +1,134 @@
 import React from 'react';
 import './nHeader.less';
-import { Layout, Row, Col, Popover } from 'antd';
+
+import { Button, Avatar, Dropdown, Menu, Popover, Input } from 'antd';
 import {
-    UnorderedListOutlined
+    EditOutlined,
+    CaretDownOutlined,
+    HomeFilled,
+    LogoutOutlined,
+    SettingFilled,
+    FontColorsOutlined,
+    CompassOutlined,
+    FundProjectionScreenOutlined,
+    BellOutlined
 } from '@ant-design/icons';
-import Left from './left/left.jsx';
-import Right from './right/right.jsx';
+import { Link } from 'react-router-dom';
 
-import API from '../../../common/api/api';
-
-const { Header } = Layout;
+const { Search } = Input;
 class nHeader extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            isLogin: false,
-            userInfo: {}
+            isLogin: true
         }
-    }
-    componentDidMount() {
-        API.user_api.getUserInfo(res => {
-            switch(res.code){
-                case 0:
-                    this.setState({
-                        isLogin:true,
-                        userInfo:res.userInfo
-                    })
-                    break;
-                case 5000:
-                    this.setState({
-                        isLogin:false,
-                        userInfo:{}
-                    })
-                    break;
-                default:
-                    this.setState({
-                        isLogin:false,
-                        userInfo:{}
-                    })
-                    break;
-            }
-        })
-    }
-    loginOut = () => {
-        localStorage.removeItem('token')
-        this.setState({
-            isLogin: false,
-            userInfo: {}
-        })
-    }
-    toPCTR = () => {
-        this.props.history.push('/u');
     }
     render() {
-        const responsive = {
-            responsiveLeft: { xs: 20, sm: 20, md: 6, lg: 6, xl: 5, xxl: 4 },
-            responsiveRight: { xs: 0, sm: 0, md: 18, lg: 18, xl: 19, xxl: 20 },
-            responsiveRList: { xs: 4, sm: 4, md: 0, lg: 0, xl: 0, xxl: 0 },
-        }
+        const publc_url = process.env.PUBLIC_URL;
+        const menu = (
+            <Menu className="dropdown-menu">
+                <Menu.Item>
+                    <Link to="/">
+                        <HomeFilled className="dropdown-item-icon" />
+                        <span className="dropdown-item-icon-s">我的主页</span>
+                    </Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Link to="/">
+                        <SettingFilled className="dropdown-item-icon" />
+                        <span className="dropdown-item-icon-s">设置</span>
+                    </Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Link to="/">
+                        <LogoutOutlined className="dropdown-item-icon" />
+                        <span className="dropdown-item-icon-s">退出</span>
+                    </Link>
+                </Menu.Item>
+            </Menu>
+        );
+
+        const text = <span>Title</span>;
         const content = (
             <div>
                 <p>Content</p>
                 <p>Content</p>
             </div>
-        )
+        );
+
         return (
-            <Header className="nHeader">
-                <Row>
-                    <Col {...responsive.responsiveLeft}>
-                        <Left />
-                    </Col>
-                    <Col {...responsive.responsiveRight}>
-                        <Right isLogin={this.state.isLogin} loginOut={this.loginOut} toPCTR={this.toPCTR} userInfo={this.state.userInfo}/>
-                    </Col>
-                    <Col {...responsive.responsiveRList} style={{ 'textAlign': 'center' }}>
-                        <Popover placement="bottomRight" content={content} title="Title" trigger="click" arrowPointAtCenter>
-                            <UnorderedListOutlined />
+            <nav className="nHeader nHeader-default nHeader-fixed-top">
+                <div className="width-limit">
+                    <Link to="/" className="log">
+                        清浅
+                    </Link>
+                    <Link to="/write" className="write-btn">
+                        <Button shape="round" icon={<EditOutlined />} size="large" className="w-btn btn-theme">
+                            写文章
+                        </Button>
+                    </Link>
+                    {
+                        !this.state.isLogin ? (
+                            <div className="unlogin">
+                                <Link to="/login" className="login-btn">
+                                    登录
+                                </Link>
+                                <Link to="/register" className="register-btn">
+                                    <Button shape="round" size="large" className="w-btn btn-theme">
+                                        注册
+                                    </Button>
+                                </Link>
+                            </div>
+                        ) : (
+                                <div className="user">
+                                    <Dropdown overlay={menu} overlayClassName="user-dropdown">
+                                        <div>
+                                            <Avatar src={publc_url + '/20170729141852_HFzVE.jpeg'} size={40} className="user-ava" />
+                                            <CaretDownOutlined className="ava-icon" />
+                                        </div>
+                                    </Dropdown>
+                                </div>
+                            )
+                    }
+                    <div className="style-mode">
+                        <Popover placement="bottomRight" arrowPointAtCenter title={text} content={content} trigger="click">
+                            <FontColorsOutlined />
                         </Popover>
-                    </Col>
-                </Row>
-            </Header>
+                    </div>
+                    <div className="container">
+                        <div className="menu">
+                            <ul>
+                                <li className="tab">
+                                    <Link to="/" className="active">
+                                        <CompassOutlined className="m-icon" />
+                                        <span className="m-icon-text">发现</span>
+                                    </Link>
+                                </li>
+                                <li className="tab">
+                                    <Link to="/">
+                                        <FundProjectionScreenOutlined className="m-icon" />
+                                        <span className="m-icon-text">关注</span>
+                                    </Link>
+                                </li>
+                                <li className="tab">
+                                    <Link to="/">
+                                        <BellOutlined className="m-icon" />
+                                        <span className="m-icon-text">消息</span>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Search
+                                        placeholder="搜索"
+                                        onSearch={value => console.log(value)}
+                                        className="search-input"
+                                        size="large"
+                                    />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         )
     }
 }

@@ -1,0 +1,55 @@
+.nSider{
+    padding-top: 30px;
+    .board{
+        .board-item{
+            height: 48px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-size: 16px;
+            line-height: 48px;
+            padding-left: 20px;
+            position: relative;
+            font-weight: 300px;
+            &.qMember{
+                background:#ffd666;
+                color:white;
+            }
+            &.goodSelect{
+                background:#fff1b8;
+                color:#d48806;
+            }
+            &.music{
+                background:#87e8de;
+                color:#006d75;
+            }
+            &.open-community{
+                background:#91d5ff;
+                color:#003a8c;
+            }
+            .q-icon{
+                height: 54px;
+                width: 54px;
+                position: absolute;
+                right: 15px;
+                bottom: 0;
+                img{
+                    height: 100%;
+                }
+            }            
+        }
+    }
+    @media (max-width: 1080px){
+        .board{
+            .board-item{
+                height: 37px;
+                line-height: 37px;
+                font-size: 14px;
+                .q-icon{
+                    height: 42px;
+                    width: 42px;
+                }
+            }
+           
+        }   
+    }
+}

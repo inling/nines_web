@@ -1,12 +1,11 @@
 import React from 'react';
-import './mainLayout.less';
 import { Route } from 'react-router-dom';
 import { Layout } from 'antd';
 import NHeader from '../components/nHeader/nHeader';
 class mainLayout extends React.Component {
     render() {
         return (
-            <Layout className = "nlayout">
+            <Layout>
                 <NHeader history={this.props.history}/>
                 {
                     this.props.routes.map((route, key) => {
