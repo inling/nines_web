@@ -11,6 +11,16 @@ import SettingName from './App/components/nSetting/settingName/settingName';
 import SettingEdit from './App/components/nSetting/settingEdit/settingEdit';
 let routes = [
     {
+        path: '/write',
+        exact: true,
+        component: Write
+    },
+    {
+        path: '/release/:anthologyId/:articleId',
+        exact: true,
+        component: Release
+    },
+    {
         path: '/',
         component: MainLayout,
         routes: [
@@ -54,17 +64,8 @@ let routes = [
         ]
     },
     {
-        path: '/write',
-        exact: true,
-        component: Write
-    },
-    {
-        path: '/release/:anthologyId/:articleId',
-        exact: true,
-        component: Release
-    },
-    {
+        path:'*',
         component: Page404
-    },
+    }
 ]
 export default routes;
