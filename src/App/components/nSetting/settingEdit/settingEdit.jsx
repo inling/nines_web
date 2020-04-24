@@ -34,7 +34,7 @@ class settingEdit extends React.Component {
     };
 
     onFinish = values => {
-        var aa= new Date(values.birthday.toString());
+        let aa= new Date(values.birthday.toString());
         values.birthday = aa.getTime()/1000;
         API.user_api.editUserInfo(values,function(res){
             console.log(res)

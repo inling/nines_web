@@ -64,7 +64,7 @@ class listbox extends React.Component {
                 <div
                     style={{
                         textAlign: 'center',
-                        marginTop: 12,
+                        margin: '30px auto 60px',
                         height: 32,
                         lineHeight: '32px',
                     }}
@@ -118,7 +118,7 @@ class listbox extends React.Component {
                             <Skeleton title={false} loading={item.loading} active>
                                 <List.Item.Meta
                                     title={<a href={item.href} className="articleName" style={{ fontWeight: '700', fontSize: '18px', color: '#333' }}>纵使青楼梦好，却难付深情</a>}
-                                    description="阿陌是这清晚楼里唯一不会说话的清倌，只因弹得一曲好琵琶，才情姿容皆上品，能招引些客人，才不至于被撵了出去。 阿陌背上一缕青烟记，额间一朵茜色并蒂..."
+                                    description={<div style={{fontSize:'13px'}}>阿陌是这清晚楼里唯一不会说话的清倌，只因弹得一曲好琵琶，才情姿容皆上品，能招引些客人，才不至于被撵了出去。 阿陌背上一缕青烟记，额间一朵茜色并蒂...</div>}
                                 />
                             </Skeleton>
                         </List.Item>

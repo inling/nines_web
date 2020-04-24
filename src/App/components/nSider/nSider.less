@@ -1,3 +1,4 @@
+@import '../../../assets/style/_theme.less';
 .nSider{
     padding-top: 30px;
     .board{
@@ -9,7 +10,7 @@
             line-height: 48px;
             padding-left: 20px;
             position: relative;
-            font-weight: 300px;
+            font-weight: 500;
             &.qMember{
                 background:#ffd666;
                 color:white;
@@ -51,5 +52,72 @@
             }
            
         }   
+    }
+
+    .download-qrbox{
+        margin-bottom: 30px;
+        padding: 10px 22px;
+        display: inline-block;
+        width: 100%;
+        border: 1px solid #f0f0f0;
+        border-radius: 6px;
+        background-color: #fff;
+        img{
+            width: 60px;
+            height: 60px;
+            opacity: .85;
+        }
+        .info{
+            float: left;
+            margin: 5px 0 0 10px;
+            .title{
+                font-size: 15px;
+                color: #333;
+            }
+            .description{
+                margin-top: 4px;
+                font-size: 13px;
+                color: #999;
+            }
+        }
+    }
+    @media (max-width: 1080px){
+        .download-qrbox{
+            padding: 7px 10px;
+            img{
+                width: 50px;
+                height: 50px;
+            }  
+            .info{
+                margin: 0 0 0 5px;
+                .title{
+                    font-size: 14px;
+                }
+                .description{
+                    font-size: 12px;
+                }
+            }     
+        }   
+    }
+
+    .rec_user_header{
+        display: flex;
+        justify-content: space-between;
+        .rec_left{
+            font-size: 14px;
+            color: #969696;
+        }
+
+        .rec_right{
+            font-size: 14px;
+            color: #969696;
+            cursor: pointer;
+            .re{
+                margin-right: 5px;
+            }
+            &:hover{
+                color: #333;
+            }
+        }
     }
 }

@@ -90,7 +90,7 @@ exports.getUserInfo = (callback) => {
  * @param {String} nickname 昵称
  * @callback callback
  */
-exports.pk = (phone, callback) => {
+exports.pk = ({ phone }, callback) => {
     let token = localStorage.getItem('token')
     return fetch('http://127.0.0.1:3001/pk', {
         method: 'POST',

@@ -5,62 +5,66 @@ import Register from './App/pages/register/register';
 import PersonalCenter from './App/pages/personalCenter/personalCenter';
 import Write from './App/pages/write/write';
 import Release from './App/pages/release/release';
+import Page404 from './App/pages/page404/page404';
 import SettingContent from './App/components/nSetting/settingContent/settingContent';
 import SettingName from './App/components/nSetting/settingName/settingName';
 import SettingEdit from './App/components/nSetting/settingEdit/settingEdit';
 let routes = [
     {
-        path:'/release',
-        exact:true,
-        component:Release
-    },
-    {
-        path:'/write',
-        exact:true,
-        component:Write
-    },
-    {
-        path:'/',
-        component:MainLayout,
-        routes:[
+        path: '/',
+        component: MainLayout,
+        routes: [
             {
-                path:'/',
-                exact:true,
-                component:Home
+                path: '/',
+                exact: true,
+                component: Home
             },
             {
-                path:'/login',
-                exact:true,
-                component:Login
+                path: '/login',
+                exact: true,
+                component: Login
             },
             {
-                path:'/register',
-                exact:true,
-                component:Register
+                path: '/register',
+                exact: true,
+                component: Register
             },
             {
-                path:'/u',
-                component:PersonalCenter,
-                routes:[
+                path: '/u',
+                exact: true,
+                component: PersonalCenter,
+                routes: [
                     {
-                        path:'/u',
-                        exact:true,
-                        component:SettingContent
+                        path: '/u',
+                        exact: true,
+                        component: SettingContent
                     },
                     {
-                        path:'/u/editNick',
-                        exact:true,
-                        component:SettingName
+                        path: '/u/editNick',
+                        exact: true,
+                        component: SettingName
                     },
                     {
-                        path:'/u/editInfo',
-                        exact:true,
-                        component:SettingEdit
+                        path: '/u/editInfo',
+                        exact: true,
+                        component: SettingEdit
                     },
                 ]
             }
-
         ]
-    }
+    },
+    {
+        path: '/write',
+        exact: true,
+        component: Write
+    },
+    {
+        path: '/release/:anthologyId/:articleId',
+        exact: true,
+        component: Release
+    },
+    {
+        component: Page404
+    },
 ]
 export default routes;

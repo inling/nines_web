@@ -2,3 +2,40 @@
 @theme_color_2:#5cdbd3;
 @theme_color_3:#36cfc9;
 @theme_color_4:#13c2c2;
+
+.btn-theme{
+    color: #fff;
+    background-color: @theme_color_2;
+    border-color: @theme_color_2;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+    &:hover{
+        color: #fff;
+        background-color: @theme_color_3;
+        border-color: @theme_color_3;
+    }
+    &:focus{
+        color: @theme_color_3;
+        background-color: #fff;
+        border-color: @theme_color_3;
+    }
+}
+
+.btn-theme-gray{
+    color: #787878;
+    background-color: #f7f7f7;
+    font-size: 13px;
+    border: 1px solid #dcdcdc;
+    text-shadow:none;
+    box-shadow: none;
+    &:hover{
+        color: #787878;
+        background-color: #f7f7f7;
+        border: 1px solid #dcdcdc;
+    }
+    &:focus{
+        color: @theme_color_3;
+        background-color: #fff;
+        border-color: @theme_color_3;
+    }
+}

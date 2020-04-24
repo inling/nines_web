@@ -1,5 +1,7 @@
 import React from 'react';
 import './nHeader.less';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { Button, Avatar, Dropdown, Menu, Popover, Input } from 'antd';
 import {
@@ -13,17 +15,25 @@ import {
     FundProjectionScreenOutlined,
     BellOutlined
 } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+
+import { logoutAction, getUserInfoAction } from '../../../store/user/action';
 
 const { Search } = Input;
 class nHeader extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLogin: true
+            userInfo: {}
         }
     }
+    componentDidMount() {
+        this.props.dispatchGetUserInfo();
+    }
+    toPCTR = () => {
+        this.props.history.push('/u');
+    }
     render() {
+        const { dispatchLogout } = this.props;
         const publc_url = process.env.PUBLIC_URL;
         const menu = (
             <Menu className="dropdown-menu">
@@ -34,13 +44,13 @@ class nHeader extends React.Component {
                     </Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to="/">
+                    <Link to="/u">
                         <SettingFilled className="dropdown-item-icon" />
                         <span className="dropdown-item-icon-s">设置</span>
                     </Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to="/">
+                    <Link to="/" onClick={dispatchLogout}>
                         <LogoutOutlined className="dropdown-item-icon" />
                         <span className="dropdown-item-icon-s">退出</span>
                     </Link>
@@ -56,6 +66,7 @@ class nHeader extends React.Component {
             </div>
         );
 
+        let { isLogin } = this.props;
         return (
             <nav className="nHeader nHeader-default nHeader-fixed-top">
                 <div className="width-limit">
@@ -68,7 +79,7 @@ class nHeader extends React.Component {
                         </Button>
                     </Link>
                     {
-                        !this.state.isLogin ? (
+                        !isLogin ? (
                             <div className="unlogin">
                                 <Link to="/login" className="login-btn">
                                     登录
@@ -133,4 +144,16 @@ class nHeader extends React.Component {
     }
 }
 
-export default nHeader;
+let mapStateToProps = (state) => {
+    return {
+        isLogin: state.user.isLogin
+    }
+}
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchLogout: () => dispatch(logoutAction()),
+        dispatchGetUserInfo: () => dispatch(getUserInfoAction())
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(nHeader);

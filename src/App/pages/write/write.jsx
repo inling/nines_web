@@ -68,6 +68,11 @@ class write extends React.Component {
             articleText: ''
         };
     }
+
+    componentDidMount() {
+        this.getAnth();
+    }
+
     handleEditorChange = ({ html, text }) => {
         console.log('handleEditorChange', html, text)
         this.setState({
@@ -114,9 +119,6 @@ class write extends React.Component {
             anthologyName: e.target.value
         })
     }
-    componentDidMount() {
-        this.getAnth();
-    }
     getAnth = () => {
         API.user_api.getAnthology(res => {
             if (res.code === 0) {
@@ -152,7 +154,7 @@ class write extends React.Component {
     getArt = (activeKey) => {
         API.user_api.getArticle(activeKey, res => {
             if (res.code === 0) {
-                var articleList = res.articleList.map((item, i) => {
+                let articleList = res.articleList.map((item, i) => {
                     item.key = item.id;
                     return item
                 })

@@ -61,6 +61,25 @@ function checkPhone(phone) {
     return res
 }
 
+function checkNick(nickname) {
+    let reg1 = new RegExp(/^.{0,1}$/);
+    let reg2 = new RegExp(/^.{17,}/);
+    let reg3 = new RegExp(/^[\u4e00-\u9fa5_\-a-zA-Z0-9]+$/);
+    let res1 = reg1.test(nickname);
+    if (res1) {
+        return false/*{ code: 4400, message: '昵称过短' };*/
+    }
+    let res2 = reg2.test(nickname);
+    if (res2) {
+        return false/*{ code: 4401, message: '昵称过长' };*/
+    }
+    let res3 = reg3.test(nickname);
+    if (!res3) {
+        return false/*{ code: 4402, message: '昵称不可包含除-和_以外的特殊字符' };*/
+    }
+    return true/*{ code: 0, message: '昵称允许注册' };*/
+}
+
 function checkVCode(code) {
     let reg = new RegExp(REG.VCODE);
     let res = reg.test(code);
@@ -71,7 +90,8 @@ let Tools = {
     checkPwd,
     securityLevel,
     checkPhone,
-    checkVCode
+    checkVCode,
+    checkNick
 }   
 
 export default Tools;

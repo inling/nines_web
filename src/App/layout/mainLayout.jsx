@@ -3,6 +3,7 @@ import './mainLayout.less';
 import { Route } from 'react-router-dom';
 import { Layout } from 'antd';
 import NHeader from '../components/nHeader/nHeader';
+import NFooter from '../components/nFooter/nFooter';
 class mainLayout extends React.Component {
     render() {
         return (
@@ -21,6 +22,7 @@ class mainLayout extends React.Component {
                         }
                     })
                 }
+                <NFooter />
             </Layout>
         )
     }
