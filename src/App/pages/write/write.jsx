@@ -1,5 +1,6 @@
 import React from 'react';
 import './write.less';
+import { connect } from 'react-redux';
 import { Row, Col, Tabs, Button, Popover, Input, Form, Empty, Table, Menu, Dropdown  } from 'antd';
 import {
     PlusOutlined,
@@ -13,6 +14,8 @@ import MarkdownIt from 'markdown-it';
 import 'react-markdown-editor-lite/lib/index.css';
 
 import API from '../../../common/api/api';
+
+import { redirectAction } from '../../../store/user/action';
 
 const { TabPane } = Tabs;
 class write extends React.Component {
@@ -44,13 +47,13 @@ class write extends React.Component {
                             placement="bottomRight"
                             overlay={
                                 (<Menu>
-                                    <Menu.Item>
+                                    <Menu.Item onClick={()=>this.deleteArt(text,record)}>
                                         <DeleteOutlined />
-                                        <span  onClick={()=>this.deleteArt(text,record)}>删除</span>
+                                        <span  >删除</span>
                                     </Menu.Item>
-                                    <Menu.Item>
+                                    <Menu.Item onClick={()=>this.redirectToRelease(text,record)}>
                                         <CloudUploadOutlined />
-                                        <span>发布</span>
+                                        <span >发布</span>
                                     </Menu.Item>
                                 </Menu>)
                             }
@@ -154,18 +157,20 @@ class write extends React.Component {
     getArt = (activeKey) => {
         API.user_api.getArticle(activeKey, res => {
             if (res.code === 0) {
+                console.log(res)
                 let articleList = res.articleList.map((item, i) => {
                     item.key = item.id;
                     return item
                 })
-                let selectedRowKeys = articleList ? [articleList[0].key] : [];
-                this.setState({
-                    selectedRowKeys: selectedRowKeys,
-                    articleList: articleList
-                })
-                if (selectedRowKeys) {
-                    this.getArtText(selectedRowKeys)
-                }
+                console.log(articleList)
+                 let selectedRowKeys = articleList.length>0 ? [articleList[0].key] : [];
+                 this.setState({
+                     selectedRowKeys: selectedRowKeys,
+                     articleList: articleList
+                 })
+                 if (selectedRowKeys) {
+                     this.getArtText(selectedRowKeys)
+                 }
             }
         })
     }
@@ -187,7 +192,7 @@ class write extends React.Component {
     }
     getArtText = (selectedRowKeys) => {
         API.user_api.getArticleText(selectedRowKeys[0], res => {
-            if (res.code === 0) {
+            if (res.code === 0&&res.article.length>0) {
                 let text = res.article[0].articleText;
                 this.setState({
                     articleText: text ? text : 'Hello.\n\n * This is markdown.\n * It is fun\n * Love it or leave it.'
@@ -203,6 +208,11 @@ class write extends React.Component {
                 this.getArt(this.state.activeKey)
             }
         })
+    }
+    redirectToRelease = (text,record)=>{
+        console.log(text,record)
+        let path = '/release/' + record.anthologyId + '/' + record.id;
+        this.props.dispatchRedirectAction({ path });
     }
     render() {
         const text = <span>输入名称</span>;
@@ -339,4 +349,15 @@ class write extends React.Component {
     }
 }
 
-export default write;
+
+let mapStateToProps = (state) => {
+    return {
+
+    }
+}
+let mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchRedirectAction: (params) => dispatch(redirectAction(params))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(write);

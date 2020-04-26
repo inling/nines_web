@@ -10,13 +10,13 @@ import {
 } from '@ant-design/icons';
 
 import Tools from '../../../common/utils/tools';
-import { loginAction } from '../../../store/user/action';
+import { loginAction,redirectAction } from '../../../store/user/action';
 
 const { Content } = Layout;
 
 const Login = (props) => {
     const [form] = Form.useForm();
-    const { checkStatus, dispatchLogin } = props;
+    const { checkStatus, dispatchLogin,dispatchRedirectAction } = props;
     const onLogin = async () => {
         try{
             const values = await form.validateFields();
@@ -25,6 +25,9 @@ const Login = (props) => {
         }catch(err){
             console.log(err)
         }   
+    }
+    const redirectToRegister = ()=>{
+        dispatchRedirectAction({path:'/register'})
     }
     return (
         <Content className="login">
@@ -113,12 +116,14 @@ const Login = (props) => {
                         onClick ={onLogin}
                     >
                         登录
-                            </Button>
+                    </Button>
                     <Button
                         size="large"
-                        style={{ width: '45%' }}>
+                        style={{ width: '45%' }}
+                        onClick ={redirectToRegister}
+                    >
                         注册
-                            </Button>
+                    </Button>
                 </div>
                 <div className="sns">
                     <a href="/" className="wechat-href">
@@ -144,6 +149,7 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
     return {
         dispatchLogin: (params) => dispatch(loginAction(params)),
+        dispatchRedirectAction:(params)=>dispatch(redirectAction(params))
     }
 }
 

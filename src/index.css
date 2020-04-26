@@ -2,14 +2,11 @@
   margin: 0;
   padding: 0;
 }
-@font-face{
-  font-family: 'SourceHanSerifSC';
-  src : url('./assets/fonts/SourceHanSerifSC-Light.otf');
-}
+
 body {
-  font-family: SourceHanSerifSC, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family:  -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif !important;
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

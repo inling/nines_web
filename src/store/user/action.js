@@ -44,7 +44,7 @@ export function loginAction(params) {
     }
 }
 
-export function getUserInfoAction(params) {
+export function getUserInfoAction() {
     return async (dispatch) => {
         await API.user_api.getUserInfo(res => {
             if (res.code === 0) {
@@ -60,11 +60,14 @@ export function getUserInfoAction(params) {
                         userInfo: res.userInfo
                     }
                 })
-            } else if (res.code === 5000) {
-
-            } else {
-
             }
         })
+    }
+}
+
+export function redirectAction(params) {
+    return async (dispatch)=>{
+        let { path } = params
+        dispatch(push(path));
     }
 }

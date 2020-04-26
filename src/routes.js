@@ -21,6 +21,16 @@ let routes = [
         component: Release
     },
     {
+        path: '/login',
+        exact: true,
+        component: Login
+    },
+    {
+        path: '/register',
+        exact: true,
+        component: Register
+    },
+    {
         path: '/',
         component: MainLayout,
         routes: [
@@ -28,16 +38,6 @@ let routes = [
                 path: '/',
                 exact: true,
                 component: Home
-            },
-            {
-                path: '/login',
-                exact: true,
-                component: Login
-            },
-            {
-                path: '/register',
-                exact: true,
-                component: Register
             },
             {
                 path: '/u',

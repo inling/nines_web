@@ -91,8 +91,8 @@ class nHeader extends React.Component {
                                 </Link>
                             </div>
                         ) : (
-                                <div className="user">
-                                    <Dropdown overlay={menu} overlayClassName="user-dropdown">
+                                <div className="user" >
+                                    <Dropdown overlay={menu} overlayClassName="user-dropdown" getPopupContainer={triggerNode => triggerNode.parentNode}>
                                         <div>
                                             <Avatar src={publc_url + '/20170729141852_HFzVE.jpeg'} size={40} className="user-ava" />
                                             <CaretDownOutlined className="ava-icon" />
