@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.0.3",
     "jsencrypt": "^3.0.0-rc.1",
-    "markdown-it": "^10.0.0",
+    "markdown-it": "^12.3.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-infinite-scroller": "^1.2.4",
